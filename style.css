@@ -1,0 +1,311 @@
+*{
+    font-family:'lato', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 12px ;
+}
+body{
+    margin: 100px;
+}
+header{
+    text-align: center;
+}
+h2{
+    font-size: 18px;
+}
+li{
+    list-style: none;
+}
+/****BARRE DE RECHERCHE PRINCIPALE****/
+#searchInput {
+    flex: 1;
+    background-color:#E7E7E7;
+    padding:1rem;
+    border-right-style: none;
+    width: 100%;
+  }
+  button {
+    background-color:#E7E7E7;
+    padding: 0.5em 1em;
+    border-left-style: none;
+    border-radius: 0 3px 3px 0;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+form {
+    display: flex;
+    padding: 20px 0 20px 0;
+}
+/*****LES TAGS*****/
+
+#tags {
+    display: flex;
+}
+
+#tags .selected {
+    background-color:#3282F7;
+    color: white;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    
+  }
+  
+  #tags i {
+    font-size: 15px;
+    padding-left: 8px;
+  }
+
+/******BARRES DE RECHERCHES SECONDAIRES***********/
+.rechercheSecondaire{
+    display: flex;
+    align-items: center;
+    padding: 20px 0 20px 0;
+    border: solid red;
+}
+.blocSearchIngredients, .blocSearchAppareils, .blocSearchUstensiles {
+    padding: 10px;
+    display: block;
+    width: 170px;
+    border: none; 
+    outline: none;
+    font-size: 20px;
+    display: flex;
+    cursor: pointer;
+    border-radius:  5px;
+}
+#searchInputTagIngredient, #searchInputTagAppareil, #searchInputTagUstensile {
+    flex: 1;
+    padding:1rem;
+    width: 100%;
+}
+#appareils li:last-child, #ingredients li:last-child, #ustensiles li:last-child {
+    padding-bottom: 25px;
+}
+#ingredients, #appareils, #ustensiles {
+    top:0;
+    width: 170px;
+    height: 70px;
+    margin: 10px;
+    border-radius : 5px;
+    color: #fff;
+    transition: all 0.6s ease-in-out;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);/*menu caché dessous*/
+}
+
+/*********INGREDIENTS SEULEMENTS************/
+#ingredients {
+    background-color: #3282F7;
+}
+#ingredients .inputTag{
+    background-color: #3282F7;
+    border:none;
+}
+#ingredients .inputTag::placeholder{
+    color: #fff;
+}
+#ingredients #chevronIngredients {
+    border: none;
+    background-color: #3282F7;
+}
+#chevronIngredients {
+    color: #fff;
+    transition: all 0.4s ease-in-out;
+}
+#chevronIngredients.rotated {
+    transform: rotate(180deg);
+    transition: all 0.4s ease-in-out;
+}
+   
+#ingredients.expanded {
+    width: 700px;
+    max-height: 700px;
+}
+#ingredients.expanded .blocSearchIngredients{
+    width: auto;
+}
+#ingredients.expanded ul{
+    column-count: 3;
+    height: 300px;
+}  
+#ingredients.expanded .fa{
+    display: flex;
+}
+#ingredients ul{
+    margin: 0;
+    cursor: pointer; 
+    display :grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+/*********USTENSILES SEULEMENTS************/
+#ustensiles {
+    background-color: #ED6454;
+}  
+#ustensiles .inputTag{
+    background-color: #ED6454;
+    border:none;
+}
+#ustensiles .inputTag::placeholder{
+    color: #fff;
+}
+#ustensiles #chevronUstensiles {
+    border: none;
+    background-color:#ED6454;
+} 
+#chevronUstensiles {
+    color: #fff;
+    transition: all 0.4s ease-in-out;
+}
+#chevronUstensiles.rotated {
+    transform: rotate(180deg);
+    transition: all 0.4s ease-in-out;
+}
+  
+#ustensiles.expanded {
+    width: 700px;
+    max-height: 700px;
+}
+#ustensiles.expanded .blocSearchUstensiles{
+    width: auto;
+}
+#ustensiles.expanded ul{
+    column-count: 3;
+    height: 300px;
+}  
+#ustensiles.expanded .fa{
+    display: flex;
+}
+#ustensiles ul{
+    margin: 0;
+    cursor: pointer; 
+    display :grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+/*********APPAREILS SEULEMENTS************/
+#appareils {
+    background: #68D9A4;
+}
+#appareils .inputTag{
+    background-color: #68D9A4;
+    border:none;
+}
+#appareils .inputTag::placeholder{
+    color: #fff;
+}
+#appareils #chevronAppareils {
+    border: none;
+    background-color: #68D9A4;
+}
+#chevronAppareils {
+    color: #fff;
+    transition: all 0.4s ease-in-out;
+}
+#chevronAppareils.rotated {
+    transform: rotate(180deg);
+    transition: all 0.4s ease-in-out;
+}
+#appareils.expanded {
+    width: 700px;
+    max-height: 700px;
+}
+#appareils.expanded .blocSearchAppareils{
+    width: auto;
+}
+#appareils.expanded ul{
+    column-count: 3;
+    height: 300px;
+}  
+#appareils.expanded .fa{
+    display: flex;
+}
+#appareils ul{
+    margin: 0;
+    cursor: pointer; 
+    display :grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/**********CHEVRONS************/
+#chevron {
+    color: #fff;
+    transition: all 0.4s ease-in-out;
+}
+#chevron.rotated {
+    transform: rotate(180deg);
+    transition: all 0.4s ease-in-out;
+}
+  
+/**************MAIN-RECETTES************/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 364px);
+    grid-gap: 70px;
+}
+.recette_container {
+    background-color: #E7E7E7;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 364px;
+}
+
+.recette_container:hover{
+    overflow: auto;
+}
+
+.photo-recette{
+    display: flex;
+    height: 50%;
+}
+
+.photo-recette img{
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    object-fit: cover;
+}
+
+.titre_recette{
+    display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    padding:0 20px 0 20px;
+}
+.temps{
+    display: flex;
+    font-size: 18px;
+    width: 80px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.description_recette{
+    display: grid;
+    padding:0 20px 0 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.ingredients_recette{
+    padding-top: 15px;
+    list-style: none;
+}
+
+
+  @media (max-width: 780px) {
+
+    .logo {
+        width: 100%;
+    }
+    .grid-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(3, auto);
+    }
+
+    .recette_container{
+        height: 580px;
+    }
+.description_recette{
+    grid-template-columns: repeat(1, 1fr);
+
+}
+
+}

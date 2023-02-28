@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/21df0f8715.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les Petits Plats</title>
+  </head>
+
+  <body>
+    <header>
+      <img src="logo.png" class="logo" alt="logo Les Petits Plats" />
+    </header>
+    <form action="/search" method="GET">
+      <input
+        type="text"
+        name="search"
+        class="input"
+        id="searchInput"
+        placeholder="Rechercher une recette"
+      />
+      <button type="submit" class="fa fa-search"></button>
+    </form>
+    <div id="suggestions"></div>
+
+    <div id="tags"></div>
+
+    <div class="rechercheSecondaire">
+      <div id="ingredients">
+        <div class="blocSearchIngredients">
+          <input
+            type="text"
+            name="search"
+            class="inputTag"
+            id="searchInputTagIngredient"
+            placeholder="Ingredient"
+          />
+          <button
+            type="submit"
+            id="chevronIngredients"
+            class="fa fa-solid fa-chevron-down"
+          ></button>
+        </div>
+      </div>
+
+      <div id="appareils">
+        <div class="blocSearchAppareils">
+          <input
+            type="text"
+            name="search"
+            class="inputTag"
+            id="searchInputTagAppareil"
+            placeholder="Appareil"
+          />
+          <button
+            type="submit"
+            id="chevronAppareils"
+            class="fa fa-solid fa-chevron-down"
+          ></button>
+        </div>
+      </div>
+
+      <div id="ustensiles">
+        <div class="blocSearchUstensiles">
+          <input
+            type="text"
+            name="search"
+            class="inputTag"
+            id="searchInputTagUstensile"
+            placeholder="Ustensile"
+          />
+          <button
+            type="submit"
+            id="chevronUstensiles"
+            class="fa fa-solid fa-chevron-down"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <main>
+      <div class="grid-container">
+        <div class="recette_container">
+          <div class="photo-recette">
+            <img src="cuisine.jpg" alt="" />
+          </div>
+          <div class="titre_recette">
+            <h2></h2>
+            <span class="temps"><i class="fas fa-regular fa-clock"></i></span>
+          </div>
+          <div class="description_recette">
+            <div class="ingredients_recette"></div>
+            <div class="recette">
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="index.js"></script>
+    <script src="factory.js"></script>
+  </body>
+</html>
