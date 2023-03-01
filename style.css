@@ -42,8 +42,8 @@ form {
 }
 
 #tags .selected {
-    background-color:#3282F7;
-    color: white;
+    /* background-color:#3282F7;
+    color: white; */
     padding: 10px;
     margin: 8px;
     border-radius: 5px;
@@ -100,6 +100,12 @@ form {
     background-color: #3282F7;
     border:none;
 }
+
+/* #tags #ingredients .selected{
+    background-color: #3282F7;
+    border:none;
+} */
+
 #ingredients .inputTag::placeholder{
     color: #fff;
 }
@@ -139,7 +145,11 @@ form {
 /*********USTENSILES SEULEMENTS************/
 #ustensiles {
     background-color: #ED6454;
-}  
+} 
+#tag #ustensiles {
+    background-color: #ED6454;
+}
+
 #ustensiles .inputTag{
     background-color: #ED6454;
     border:none;
@@ -251,6 +261,8 @@ form {
 
 .recette_container:hover{
     overflow: auto;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
 }
 
 .photo-recette{
