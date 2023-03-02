@@ -1343,7 +1343,7 @@
             "servings": 40,
             "ingredients": [
                 {
-                    "ingredient": "Pommes",
+                    "ingredient": "Pomme",
                     "quantity": 2
                 },
                 {
@@ -1662,7 +1662,7 @@
             "servings": 4,
             "ingredients": [
                 {
-                    "ingredient": "Bananes",
+                    "ingredient": "Banane",
                     "quantity": 2
                 },
                 {

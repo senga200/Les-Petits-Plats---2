@@ -2,9 +2,9 @@
     font-family:'lato', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 12px ;
 }
-body{
-    margin: 100px;
-}
+ body{
+    margin: 0;
+} 
 header{
     text-align: center;
 }
@@ -32,6 +32,7 @@ li{
   }
 
 form {
+    margin: 20px;
     display: flex;
     padding: 20px 0 20px 0;
 }
@@ -42,8 +43,7 @@ form {
 }
 
 #tags .selected {
-    /* background-color:#3282F7;
-    color: white; */
+    color: white; 
     padding: 10px;
     margin: 8px;
     border-radius: 5px;
@@ -58,9 +58,8 @@ form {
 /******BARRES DE RECHERCHES SECONDAIRES***********/
 .rechercheSecondaire{
     display: flex;
-    align-items: center;
     padding: 20px 0 20px 0;
-    border: solid red;
+    margin: 20px;
 }
 .blocSearchIngredients, .blocSearchAppareils, .blocSearchUstensiles {
     padding: 10px;
@@ -100,11 +99,6 @@ form {
     background-color: #3282F7;
     border:none;
 }
-
-/* #tags #ingredients .selected{
-    background-color: #3282F7;
-    border:none;
-} */
 
 #ingredients .inputTag::placeholder{
     color: #fff;
@@ -172,14 +166,12 @@ form {
   
 #ustensiles.expanded {
     width: 700px;
-    max-height: 700px;
 }
 #ustensiles.expanded .blocSearchUstensiles{
     width: auto;
 }
 #ustensiles.expanded ul{
     column-count: 3;
-    height: 300px;
 }  
 #ustensiles.expanded .fa{
     display: flex;
@@ -222,7 +214,7 @@ form {
 }
 #appareils.expanded ul{
     column-count: 3;
-    height: 300px;
+
 }  
 #appareils.expanded .fa{
     display: flex;
@@ -247,6 +239,7 @@ form {
 /**************MAIN-RECETTES************/
 
 .grid-container {
+    margin: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 364px);
@@ -301,15 +294,42 @@ form {
     list-style: none;
 }
 
+.error-message{
+    font-size: 18px;
+    color: #6E6E6E;
+    text-align: center;
+}
 
   @media (max-width: 780px) {
 
-    .logo {
-        width: 100%;
+    body {
+        margin: 20px;
     }
+
+    .logo {
+        width: 90%;
+        margin: 25px 0 0 0;
+     }
+  
+
     .grid-container {
       grid-template-columns: repeat(1, 1fr);
       grid-template-rows: repeat(3, auto);
+      
+    }
+    
+    .rechercheSecondaire {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #ingredients.expanded, #ustensiles.expanded, #appareils.expanded {
+        width: 100%;
+        max-height: 700px;
+    }
+
+    #ingredients ul, #ustensiles ul, #appareils ul {
+        padding: 5px;
     }
 
     .recette_container{
