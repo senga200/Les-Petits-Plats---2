@@ -24,26 +24,7 @@
     console.error(error);
   }
 }
-//recuperer la recette et l'afficher dans le DOM
-async function getRecipe() {
-  try {
-    recipesTab = await getRecipes();
-    grid.innerHTML = "";
-    //pour chaque recette on appelle la factory que l'on stocke dans la variable recipeDetail et on applique la methode getRecipeDOM
-    recipesTab.forEach(recipe => {
-      const recipeDetail = recipeFactory(recipe);
-      const recipeElement = recipeDetail.getRecipeDOM();
-      grid.appendChild(recipeElement);
-    });
-    getIngredients();
-    getAppliances();
-    getUstensils();
-  } catch (error) {
-    console.error(error);
-  }
-}
-//charger la recette  
-getRecipe();
+
 
 //VARIABLES
 //tableau de recettes
@@ -83,6 +64,7 @@ function displayResults(results){
     const recipeElement = recipeDetail.getRecipeDOM();
     grid.appendChild(recipeElement);
   }); 
+  getIngredients(result);
 }
 
 //********BARRE DE RECHERCHE PRINCIPALE********//
@@ -90,43 +72,50 @@ function displayResults(results){
 /////////////////////////////////////////////////
 
 
-
 searchInput.addEventListener("input", function() {
   const input = searchInput.value.trim().toLowerCase();
   if (input.length >= 3) {
-    // Vérifier si le texte entré correspond à un ingrédient
-    //ingredientsList.innerHTML = "";//ajout un innerHTML pour vider la liste des ingredients
-    ingredientsTab = [];
-    for (const recipe of recipesTab) {
-      for (const ingredient of recipe.ingredients) {
-        if (ingredient.ingredient.toLowerCase().includes(input)) {
-          if (!ingredientsTab.includes(ingredient.ingredient)) {
-            ingredientsTab.push(ingredient.ingredient);
-          }
-        }
-      } console.log("input : " +input )
-    }
-    const result = recipesTab.filter(recipe =>
-      recipe.name.toLowerCase().includes(input) ||
-      recipe.description.toLowerCase().includes(input) ||
-      recipe.ingredients.some(ingredient =>
-        ingredient.ingredient.toLowerCase().includes(input)
-      )
-    );console.log("resultat const input : " +JSON.stringify(result));
-    if (result.length > 0) {
-      displayResults(result); 
-      // affiche les résultats filtrés
-    } else {
-      grid.innerHTML = '<p class="error-message">Aucune recette ne correspond à votre critère de recherche</p>';
-    }
+  // Vérifier si le texte entré correspond à un ingrédient
+  //ingredientsList.innerHTML = "";//ajout un innerHTML pour vider la liste des ingredients
+  ingredientsTab = [];
+  for (const recipe of recipesTab) {
+  for (const ingredient of recipe.ingredients) {
+  if (ingredient.ingredient.toLowerCase().includes(input)) {
+  if (!ingredientsTab.includes(ingredient.ingredient)) {
+  ingredientsTab.push(ingredient.ingredient);
+  }
+  }
+  } console.log("input : " +input )
+  }
+  result = [];
+  for (const recipe of recipesTab) {
+  if (recipe.name.toLowerCase().includes(input) ||
+  recipe.description.toLowerCase().includes(input)) {
+  result.push(recipe);
+  } else {
+  for (const ingredient of recipe.ingredients) {
+  if (ingredient.ingredient.toLowerCase().includes(input)) {
+  result.push(recipe);
+  break;
+  }}}
+}
+  console.table("resultat result : " +JSON.stringify(result));
+  if (result.length > 0) {
+  displayResults(result);
+  //getIngredients(result);
+  // affiche les résultats filtrés
+  } else {
+  grid.innerHTML = '<p class="error-message">Aucune recette ne correspond à votre critère de recherche</p>';
+  }
   } else if (input.length === 0) {
-    ingredientsTab = [];
-    displayResults(recipesTab);  
+  ingredientsTab = [];
+  displayResults(recipesTab);
+  //getIngredients(result);
   }
   //afficher l'ingredient recherché dans l'input principal
   console.log("ingredientsTab searchbar principale : "+ingredientsTab);
-});
-console.log("test");
+  });
+  console.log("test");
 //********BARRE DE RECHERCHE INGREDIENTS********//
 //////////////////////////////////////////////////
 //recuperer la liste de tous ingredients et les afficher dans la div ingredients et supprimer les doublons
@@ -160,25 +149,74 @@ async function getIngredients() {
   }
 }
 
+//addEventListener sur searhInputTagIngredient pour :
+//1. verifier si la saisie au bout de 3 caractères correspond à un ingrédient
+//2. si oui, afficher les recettes correspondantes
+//3. si non, afficher un message d'erreur
+//4. si la saisie est vide, afficher toutes les recettes
+//5. mettre à jour la liste des ingrédients en fonction de la saisie de dans l'input
 searchInputTagIngredient.addEventListener("input", function() {
-  const input = searchInputTagIngredient.value;
-  // On filtre les recettes contenant les ingrédients correspondants
+  const input = searchInputTagIngredient.value.trim().toLowerCase();
   if (input.length >= 3) {
-    //recherche dans les ingredients
-    const result = recipesTab.filter(recipe =>
-      recipe.ingredients.some(ingredient =>
-        ingredient.ingredient.toLowerCase().includes(input.toLowerCase())
-      ));
-    if (result.length > 0) {
-      displayResults(result);console.log("le result ingredient : " +result);
-    console.log("tableau ingredientTab : " +ingredientsTab);
-    } else {
-      grid.innerHTML = "Aucune recette ne correspond à votre critère de recherche";
+    // Vérifier si le texte entré correspond à un ingrédient
+    //ingredientsList.innerHTML = "";//ajout un innerHTML pour vider la liste des ingredients
+    ingredientsTab = [];
+    for (const recipe of recipesTab) {
+      for (const ingredient of recipe.ingredients) {
+        if (ingredient.ingredient.toLowerCase().includes(input)) {
+          if (!ingredientsTab.includes(ingredient.ingredient)) {
+            ingredientsTab.push(ingredient.ingredient);
+          }
+        }
+      }
     }
-  } else {
+    result = [];
+    for (const recipe of recipesTab) {
+      if (recipe.name.toLowerCase().includes(input) ||
+        recipe.description.toLowerCase().includes(input)) {
+        result.push(recipe);
+      } else {
+        for (const ingredient of recipe.ingredients) {
+          if (ingredient.ingredient.toLowerCase().includes(input)) {
+            result.push(recipe);
+            break;
+          }
+        }
+      }
+    }
+    console.table("resultat result : " + JSON.stringify(result));
+    if (result.length > 0) {
+      //mise à jour de la liste des ingrédients
+      ulIngredients.style.display = "none";
+      ingredientsTab.sort(function(a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+      });
+      ingredientsTab.forEach(ingredient => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${ingredient}</strong>`;
+        ingredientsList.appendChild(li);
+      });
+      displayResults(result);
+      //getIngredients(result);
+      // affiche les résultats filtrés
+    } else {
+      grid.innerHTML = '<p class="error-message">Aucune recette ne correspond à votre critère de recherche</p>';
+    }
+  } else if (input.length === 0) {
+    ingredientsTab = [];
     displayResults(recipesTab);
-  }      
+    //getIngredients(result);
+  }
+  //afficher l'ingredient recherché dans l'input principal
+  console.log("ingredientsTab searchbar principale : " + ingredientsTab);
 });
+console.log("test");
+
+
+
+
+
+
 
 //********BARRE DE RECHERCHE APPAREILS********//
 //////////////////////////////////////////////////
@@ -533,7 +571,23 @@ tags.addEventListener("click", function(e) {
 
 
 
-
-
-
-
+//recuperer la recette et l'afficher dans le DOM
+async function getRecipe() {
+  try {
+    recipesTab = await getRecipes();
+    grid.innerHTML = "";
+    //pour chaque recette on appelle la factory que l'on stocke dans la variable recipeDetail et on applique la methode getRecipeDOM
+    recipesTab.forEach(recipe => {
+      const recipeDetail = recipeFactory(recipe);
+      const recipeElement = recipeDetail.getRecipeDOM();
+      grid.appendChild(recipeElement);
+    });
+    getIngredients(result);
+    getAppliances(result);
+    getUstensils(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
+//charger la recette  
+getRecipe();

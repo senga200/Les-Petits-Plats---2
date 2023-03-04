@@ -118,14 +118,15 @@ form {
    
 #ingredients.expanded {
     width: 700px;
-    max-height: 700px;
+    max-height: 100%;
 }
 #ingredients.expanded .blocSearchIngredients{
     width: auto;
 }
 #ingredients.expanded ul{
     column-count: 3;
-    height: 300px;
+    max-height: auto;
+    /* height: 300px; */
 }  
 #ingredients.expanded .fa{
     display: flex;
