@@ -106,10 +106,10 @@ async function getAllIngredients() {
       console.log(error);
     }
   }
-  getAllIngredients();
+getAllIngredients();
 
 
- async function getAllAppliances() {
+async function getAllAppliances() {
     try {
       await getAllRecipes();
       for (let i = 0; i < recipesTab.length; i++) {
@@ -123,7 +123,7 @@ async function getAllIngredients() {
       console.log(error);
     }
   }
-  getAllAppliances();
+getAllAppliances();
 
     
 async function getAllUstensils() {
@@ -142,7 +142,7 @@ async function getAllUstensils() {
       console.log(error);
     }
   }
-  getAllUstensils();
+getAllUstensils();
 
 
 //***** Afficher les ingrédients, les appareils et les ustensiles dans le DOM  *//
@@ -160,7 +160,7 @@ async function displayIngredients() {
       console.log(error);
     }
   }
-  displayIngredients();
+displayIngredients();
   
   
 async function displayAppliances() {
@@ -177,7 +177,7 @@ async function displayAppliances() {
       console.log(error);
     }
   }
-  displayAppliances();
+displayAppliances();
 
   
 async function displayUstensils() {
@@ -194,8 +194,8 @@ async function displayUstensils() {
       console.log(error);
     }
   }
-  displayUstensils();
-  
+displayUstensils();
+
   
 //**** menu dér  oulant ingrédients  *//
 blocSearchIngredients.addEventListener("click", () => {
@@ -505,7 +505,7 @@ ustensilsList.addEventListener("click", beAnUstensilTag);
 function beAnUstensilTag(e){
     if (e.target.tagName === "LI") {//si l'element cliqué est un li
         const ustensil = e.target.textContent.trim().toLowerCase();//recupere le texte du li et le met en minuscule
-        createUstensilTag(ustensil);//appelle la fonction createUstensilTag
+        createUstensileTag(ustensil);//appelle la fonction createUstensilTag
         if (!selectedTags.includes(ustensil)) {
             selectedTags.push(ustensil);
             }

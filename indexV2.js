@@ -444,7 +444,7 @@ ustensilsList.addEventListener("click", beAnUstensilTag);
 function beAnUstensilTag(e){
   if (e.target.tagName === "LI") {
     const ustensil = e.target.textContent.trim().toLowerCase();
-    createUstensilTag(ustensil);
+    createUstensileTag(ustensil);
     if (!selectedTags.includes(ustensil)) {
       selectedTags.push(ustensil);
     }
