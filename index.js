@@ -90,62 +90,63 @@ function displayResults(results) {
   
 
 // Récupérer les ingrédients, les appareils et les ustensiles à partir du tableau recipesTab et les stocker dans des tableaux
-const getAllIngredients = async () => {
+async function getAllIngredients() {
     try {
-    await getAllRecipes();
-    for (let i = 0; i < recipesTab.length; i++) {
-    const recipe = recipesTab[i];
-    for (let j = 0; j < recipe.ingredients.length; j++) {
-    const ingredient = recipe.ingredients[j];
-    allIngredients.push(ingredient.ingredient);
-    }
-    }
-    allIngredients = [...new Set(allIngredients)];
-    allIngredients.sort();
-    //console.log("recuperation de getAllIngredients :" ,allIngredients);
+      await getAllRecipes();
+      for (let i = 0; i < recipesTab.length; i++) {
+        const recipe = recipesTab[i];
+        for (let j = 0; j < recipe.ingredients.length; j++) {
+          const ingredient = recipe.ingredients[j].ingredient;
+          allIngredients.push(ingredient);
+        }
+      }
+      allIngredients = [...new Set(allIngredients)];
+      //console.log("recuperation de getAllIngredients :" ,allIngredients);
     } catch (error) {
-    console.log(error);
+      console.log(error);
     }
-    };
-    getAllIngredients();
-    
-    const getAllAppliances = async () => {
-    try {
-    await getAllRecipes();
-    for (let i = 0; i < recipesTab.length; i++) {
-    const recipe = recipesTab[i];
-    allAppliances.push(recipe.appliance);
-    }
-    allAppliances = [...new Set(allAppliances)];
-    //console.log("recuperation de getAllAppliances :" ,allAppliances);
-    } catch (error) {
-    console.log(error);
-    }
-    };
-    getAllAppliances();
-    
-    const getAllUstensils = async () => {
-    try {
-    await getAllRecipes();
-    for (let i = 0; i < recipesTab.length; i++) {
-    const recipe = recipesTab[i];
-    for (let j = 0; j < recipe.ustensils.length; j++) {
-    const ustensil = recipe.ustensils[j];
-    allUstensils.push(ustensil);
-    }
-    }
-    allUstensils = [...new Set(allUstensils)];
-    //console.log("recuperation de getAllUstensils :" ,allUstensils);
-    } catch (error) {
-    console.log(error);
-    }
-    };
-    getAllUstensils();
+  }
+  getAllIngredients();
 
+
+ async function getAllAppliances() {
+    try {
+      await getAllRecipes();
+      for (let i = 0; i < recipesTab.length; i++) {
+        const recipe = recipesTab[i];
+        const appliance = recipe.appliance;
+        allAppliances.push(appliance);
+      }
+      allAppliances = [...new Set(allAppliances)];
+      //console.log("recuperation de getAllAppliances :" ,allAppliances);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getAllAppliances();
+
+    
+async function getAllUstensils() {
+    try {
+      await getAllRecipes();
+      for (let i = 0; i < recipesTab.length; i++) {
+        const recipe = recipesTab[i];
+        for (let j = 0; j < recipe.ustensils.length; j++) {
+          const ustensil = recipe.ustensils[j];
+          allUstensils.push(ustensil);
+        }
+      }
+      allUstensils = [...new Set(allUstensils)];
+      //console.log("recuperation de getAllUstensils :" ,allUstensils);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getAllUstensils();
 
 
 //***** Afficher les ingrédients, les appareils et les ustensiles dans le DOM  *//
-const displayIngredients = async () => {
+async function displayIngredients() {
     try {
       await getAllIngredients();
       for (let i = 0; i < allIngredients.length; i++) {
@@ -158,10 +159,11 @@ const displayIngredients = async () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
   displayIngredients();
   
-  const displayAppliances = async () => {
+  
+async function displayAppliances() {
     try {
       await getAllAppliances();
       for (let i = 0; i < allAppliances.length; i++) {
@@ -174,10 +176,11 @@ const displayIngredients = async () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
   displayAppliances();
+
   
-  const displayUstensils = async () => {
+async function displayUstensils() {
     try {
       await getAllUstensils();
       for (let i = 0; i < allUstensils.length; i++) {
@@ -190,8 +193,9 @@ const displayIngredients = async () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
   displayUstensils();
+  
   
 //**** menu dér  oulant ingrédients  *//
 blocSearchIngredients.addEventListener("click", () => {

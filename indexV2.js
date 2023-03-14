@@ -56,7 +56,6 @@ const ustensilsList = document.querySelector("#ustensiles");
  }
 }
 
-
 //recuperer la recette et l'afficher dans le DOM
 
    async function getRecipe() { 
@@ -87,100 +86,107 @@ function displayResults(results) {
    }
 
 //***** Récuperer les ingrédients, les appareils et les ustensiles à partir du tableau recipesTab et les stocker dans des tableaux  *//
-const getAllIngredients = async () => {
+async function getAllIngredients() {
   try {
-      await getAllRecipes();
-      recipesTab.forEach((recipe) => {
-          recipe.ingredients.forEach((ingredient) => {
-              allIngredients.push(ingredient.ingredient);
-          });
+    await getAllRecipes();
+    recipesTab.forEach((recipe) => {
+      recipe.ingredients.forEach((ingredient) => {
+        allIngredients.push(ingredient.ingredient);
       });
-      allIngredients = [...new Set(allIngredients)];
-      //console.log("recuperation de getAllIngredients :" ,allIngredients);
-      //trier les ingrédients par ordre alphabétique
-      allIngredients.sort();
+    });
+    allIngredients = [...new Set(allIngredients)];
+    //console.log("recuperation de getAllIngredients :" ,allIngredients);
+    //trier les ingrédients par ordre alphabétique
+    allIngredients.sort();
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 }
+
 getAllIngredients();
 
-const getAllAppliances = async () => {
+
+async function getAllAppliances() {
   try {
-      await getAllRecipes();
-      recipesTab.forEach((recipe) => {
-          allAppliances.push(recipe.appliance);
-      });
-      allAppliances = [...new Set(allAppliances)];
-      //console.log("recuperation de getAllAppliances :" ,allAppliances);
+    await getAllRecipes();
+    recipesTab.forEach((recipe) => {
+      allAppliances.push(recipe.appliance);
+    });
+    allAppliances = [...new Set(allAppliances)];
+    //console.log("recuperation de getAllAppliances :" ,allAppliances);
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 }
 getAllAppliances();
 
-const getAllUstensils = async () => {
+
+
+async function getAllUstensils() {
   try {
-      await getAllRecipes();
-      recipesTab.forEach((recipe) => {
-          recipe.ustensils.forEach((ustensil) => {
-              allUstensils.push(ustensil);
-          });
+    await getAllRecipes();
+    recipesTab.forEach((recipe) => {
+      recipe.ustensils.forEach((ustensil) => {
+        allUstensils.push(ustensil);
       });
-      allUstensils = [...new Set(allUstensils)];
-      //console.log("recuperation de getAllUstensils :" ,allUstensils);
+    });
+    allUstensils = [...new Set(allUstensils)];
+    //console.log("recuperation de getAllUstensils :" ,allUstensils);
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 }
 getAllUstensils();
 
 
 //***** Afficher les ingrédients, les appareils et les ustensiles dans le DOM  *//
-const displayIngredients = async () => {
+async function displayIngredients() {
   try {
-      await getAllIngredients();
-      allIngredients.forEach((ingredient) => {
-          const li = document.createElement("li");
-          li.innerHTML = ingredient;
-          ulIngredients.appendChild(li);
-      });
-      ingredientsList.appendChild(ulIngredients);
+    await getAllIngredients();
+    allIngredients.forEach((ingredient) => {
+      const li = document.createElement("li");
+      li.innerHTML = ingredient;
+      ulIngredients.appendChild(li);
+    });
+    ingredientsList.appendChild(ulIngredients);
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 }
 displayIngredients();
 
-const displayAppliances = async () => {
+
+async function displayAppliances() {
   try {
-      await getAllAppliances();
-      allAppliances.forEach((appliance) => {
-          const li = document.createElement("li");
-          li.innerHTML = appliance;
-          ulAppliances.appendChild(li);
-      });
-      appliancesList.appendChild(ulAppliances);
+    await getAllAppliances();
+    allAppliances.forEach((appliance) => {
+      const li = document.createElement("li");
+      li.innerHTML = appliance;
+      ulAppliances.appendChild(li);
+    });
+    appliancesList.appendChild(ulAppliances);
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 }
 displayAppliances();
 
-const displayUstensils = async () => {
+
+async function displayUstensils() {
   try {
-      await getAllUstensils();
-      allUstensils.forEach((ustensil) => {
-          const li = document.createElement("li");
-          li.innerHTML = ustensil;
-          ulUstensils.appendChild(li);
-      });
-      ustensilsList.appendChild(ulUstensils);
+    await getAllUstensils();
+    allUstensils.forEach((ustensil) => {
+      const li = document.createElement("li");
+      li.innerHTML = ustensil;
+      ulUstensils.appendChild(li);
+    });
+    ustensilsList.appendChild(ulUstensils);
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 }
 displayUstensils();
+
 
 //**** menu dér  oulant ingrédients  *//
 blocSearchIngredients.addEventListener("click", () => {
