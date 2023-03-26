@@ -26,14 +26,14 @@ function recipeFactory(data) {
         descriptionContainer.classList.add("description_recette");
         const ingredientsList = document.createElement("div");
         ingredientsList.classList.add("ingredients_recette");
-          ingredients.forEach(({ ingredient, quantity, unit }) => {// destructuring
-              const li = document.createElement("li");
-             let liText = `<strong>${ingredient}</strong>`;
-             if (quantity) {
-               liText += ` ${quantity}`;
-             }
-             if (unit) {
-               liText += ` ${unit}`;
+          ingredients.forEach(({ ingredient, quantity, unit }) => {// destructuring de l'objet ingredients
+              const li = document.createElement("li");//creer la liste des ingredients
+             let liText = `<strong>${ingredient}</strong>`;//creer le texte de la liste des ingredients
+             if (quantity) {//si la quantité existe
+               liText += ` ${quantity}`;//ajouter la quantité
+             }//si la quantité existe
+             if (unit) {//si l'unité existe
+               liText += ` ${unit}`;//ajouter l'unité
              }
              li.innerHTML = liText;
            ingredientsList.appendChild(li);
@@ -58,12 +58,12 @@ function recipeFactory(data) {
   
     // creation d'une factory pattern pour les tags
 
-    function createIngredientTagFactory(tagColor) {
-      return function createIngredientTag(inputValue) {
+    function createIngredientTagFactory(tagColor) { 
+      function createIngredientTag(inputValue) {
         const liTag = document.querySelectorAll("#ingredients li");
-        liTag.forEach((li) => {
-          const itemName = li.textContent.trim().toLowerCase();
-          if (itemName===inputValue) {
+        liTag.forEach((li) => {//pour chaque li
+          const itemName = li.textContent.trim().toLowerCase();//recuperer le nom de l'ingredient
+          if (itemName===inputValue) {//si le nom de l'ingredient est égal à la valeur de l'input
             const tag = document.createElement("span");
             tag.innerHTML = `<strong>${itemName}</strong>`;
             const closeBtn = document.createElement("i");
@@ -73,17 +73,13 @@ function recipeFactory(data) {
             tags.appendChild(tag);
             tag.appendChild(closeBtn);
             selectedTags.push(itemName);
-            closeBtn.addEventListener("click", function() {
-              removeTag(tag, itemName);
-            });
           }
         });
-        searchRecipes();
-      };
+      }; return createIngredientTag; 
     }
     
     function createUstensileTagFactory(tagColor) {
-      return function createUstensileTag(inputValue) {
+      function createUstensileTag(inputValue) {
         const liTag = document.querySelectorAll("#ustensiles li");
         liTag.forEach((li) => {
           const itemName = li.textContent.trim().toLowerCase();
@@ -97,17 +93,13 @@ function recipeFactory(data) {
             tags.appendChild(tag);
             tag.appendChild(closeBtn);
             selectedTags.push(itemName);
-            closeBtn.addEventListener("click", function() {
-              removeTag(tag, itemName);
-            });
-          }
+          } 
         });
-        searchRecipes();
-      };
+      };return createUstensileTag;
     }
     
     function createAppareilTagFactory(tagColor) {
-      return function createAppareilTag(inputValue) {
+      function createAppareilTag(inputValue) {
         const liTag = document.querySelectorAll("#appareils li");
         liTag.forEach((li) => {
           const itemName = li.textContent.trim().toLowerCase();
@@ -121,13 +113,9 @@ function recipeFactory(data) {
             tags.appendChild(tag);
             tag.appendChild(closeBtn);
             selectedTags.push(itemName);
-            closeBtn.addEventListener("click", function() {
-              removeTag(tag, itemName);
-            });
           }
         });
-        searchRecipes();
-      };
+      }; return createAppareilTag;
     }
     
     // Définition des couleurs de fond pour chaque type de tag
